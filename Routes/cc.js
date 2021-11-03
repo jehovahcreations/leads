@@ -58,7 +58,7 @@ app.post('/citibank',async(req,res)=>{
        }
     
     })
-    app.post('/axis',async(req,res)=>{
+    app.post('/sbi',async(req,res)=>{
     console.log(req.body);
     var random ='Jeh'+Date.now()+between(100000, 999999);
     var url = "https://api.onecode.in/userForm/addLead?hash=eyJvbmVjb2RlIjoiT25lQDgwODAxMDA1MTIiLCJwYXJ0bmVySWQiOiI5MiIsInBob25lTm8iOiI5MTg4NjIwMjQxMjMifQ==&hasOtpCheck=false";
@@ -87,8 +87,8 @@ app.post('/citibank',async(req,res)=>{
       };
     
     try {
-    
-      
+     const resp = await axios.get('https://click.monetizedeal.com/c?o=6024c99d6551cf0db1587563&a=617d9d7f09856a6a682b849e');
+      console.log(resp)
      const response = await axios.post(url, body, axiosConfig);
        // return response;
      console.log(response.data.data.url);
@@ -194,4 +194,7 @@ app.post('/citibank',async(req,res)=>{
 
       //https://inr.deals/track?id=jeh536864247&src=merchant-backend&campaign=cpl&url=https://indusforex.indusind.com/
 module.exports = app
+
+//https://click.monetizedeal.com/c?o=6024c99d6551cf0db1587563&a=617d9d7f09856a6a682b849e
+//https://click.monetizedeal.com/c?o=6024c99d6551cf0db1587563&a=617d9d7f09856a6a682b849e
 

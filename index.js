@@ -6,40 +6,30 @@ const BankJobs = require('./Routes/bankjobs');
 const CreditCard = require('./Routes/cc');
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
+const Bank = require('./model/bank')
+const SubMenu = require('./model/subMenu')
+var ejs = require('ejs');
 
+//app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
 // parse application/json, basically parse incoming Request Object as a JSON Object 
 app.use(bodyParser.json());
-// parse application/x-www-form-urlencoded, basically can only parse incoming Request Object if strings or arrays
-//app.use(bodyParser.urlencoded({ extended: false }));
-// combines the 2 above, then you can parse incoming Request Object if object, with nested objects, or generally any type.
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/bank',BankJobs)
-app.use('/cc',CreditCard)
-app.get('/kotak', (req, res) => {
-  res.sendFile(__dirname + "/View/index.html");
-})
-app.get('/citibank', (req, res) => {
-  res.sendFile(__dirname + "/View/cc/citibank.html");
-})
+app.engine('html',require('ejs').renderFile);
+// Require static assets from public folder
+app.use(express.static(path.join(__dirname, 'public')));
 
+// Set 'views' directory for any views 
+// being rendered res.render()
+app.set('views', path.join(__dirname, 'views'));
 
-app.get('/kotak', (req, res) => {
-  res.sendFile(__dirname + "/View/index.html");
-})
-app.get('/hdfc', (req, res) => {
-  res.sendFile(__dirname + "/View/hdfc.html");
-})
-app.get('/axis', (req, res) => {
-  res.sendFile(__dirname + "/View/axis.html");
-})
-app.get('/equitas', (req, res) => {
-  res.sendFile(__dirname + "/View/equitas.html");
-})
-app.get('/indusind', (req, res) => {
-  res.sendFile(__dirname + "/View/indusind.html");
-})
+// Set view engine as EJS
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
+app.use('/',BankJobs)
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

@@ -4,6 +4,7 @@ const Schema = mongoose.Schema
 
 const Bank = new Schema({
     user:String,
+    parent:String,
     name:String,
     phone:String,
     email:String,
