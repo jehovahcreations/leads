@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
   var c = query.c;
   var i =query.i;
 SubMenu.findOne({menuID:c},(err,menu)=>{
+  console.log(menu);
   res.render("index.ejs",{img: menu.image,u:menu.dataurl,p:menu.param});
 })
 console.log(id + c + i);
