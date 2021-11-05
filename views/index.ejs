@@ -66,7 +66,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </script>
 </head>
 
-<body class="bg" onload="myFunction()">
+<body class="bg">
     <div class="bootstrap-wrapper">
         <div class="container">
             <div class="row myDiv">
@@ -104,9 +104,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <input type="text" name="email" id="email" placeholder="Email" required="">
                     <h4>Your Phone Number*</h4>
                     <input type="text" name="phone" id="phone" placeholder="Phone" required="">
-                    <input type="hidden" class="form-control" id="user" placeholder="Enter email" value="" name="user" required>
-                    <input type="hidden" class="form-control" id="c" placeholder="Enter email" value="" name="c" required>
-                    <input type="hidden" class="form-control" id="i" placeholder="Enter email" value="" name="i" required>
+                    <input type="hidden" class="form-control" id="user" placeholder="Enter email" value="<%=id%>" name="user" required>
+                    <input type="hidden" class="form-control" id="c" placeholder="Enter email" value="<%=c%>" name="c" required>
+                    <input type="hidden" class="form-control" id="i" placeholder="Enter email" value="<%=i%>" name="i" required>
                     <input type="hidden" class="form-control" id="u" placeholder="Enter email" value="<%=u%>" name="u" required>
                     <input type="hidden" class="form-control" id="p" placeholder="Enter email" value="<%=p%>" name="p" required>
 
@@ -124,6 +124,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         type: frm.attr('method'),
                         url: frm.attr('action'),
                         data: frm.serialize(),
+                        dataType: "json",
                         success: function(data) {
                             console.log('Submission was successful.');
                             console.log(data);

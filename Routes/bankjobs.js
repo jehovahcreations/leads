@@ -8,17 +8,29 @@ const SubMenu = require('../model/subMenu')
 const User = require('../model/user')
 
 
-app.get('/', (req, res) => {
+app.get('/:c/:i/:id', (req, res) => {
   var query = require('url').parse(req.url,true).query;
-  var id = query.id;
-  var c = query.c;
-  var i =query.i;
+  var id = req.params.id;
+  var c = req.params.c;
+  var i =req.params.i;
+if(id==''||c==''||i==''){
+console.log('not Autorised')
+}else{
+console.log(id);
 SubMenu.findOne({menuID:c},(err,menu)=>{
-  console.log(menu);
-  res.render("index.ejs",{img: menu.image,u:menu.dataurl,p:menu.param});
+//  console.log(menu);
+if(err){
+res.send('You are not Authorised')
+}else{
+if(menu == null){
+res.send('You are not Authorised');
+}else{
+  res.render("index.ejs",{img: menu.image,u:menu.dataurl,p:menu.param,i:i,c:c,id:id});
+}
+}
 })
 console.log(id + c + i);
- 
+ }
 })
 
 
@@ -58,8 +70,8 @@ try {
         point:menu.points,
         parent:user.parent
     })
-    bank.save();
-    res.send(response.data.data.url)
+    await bank.save();
+    res.status(200).redirect(response.data.data.url);
    } catch (err) {
     //throw getError(err);
     console.log(err);
