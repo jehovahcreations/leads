@@ -17,9 +17,10 @@ app.use(cors());
 // parse application/json, basically parse incoming Request Object as a JSON Object 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.engine('html',require('ejs').renderFile);
+//app.engine('html',require('ejs').renderFile);
 // Require static assets from public folder
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
+ app.use(express.static("public"));
 
 // Set 'views' directory for any views 
 // being rendered res.render()

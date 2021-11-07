@@ -71,7 +71,8 @@ try {
         parent:user.parent
     })
     await bank.save();
-    res.status(200).redirect(response.data.data.url);
+//    console.log(response.data.data.url); 
+    res.json({url:response.data.data.url});
    } catch (err) {
     //throw getError(err);
     console.log(err);
@@ -101,7 +102,8 @@ try {
         parent:user.parent
     })
     bank.save();
-    res.send(url)
+console.log(url);
+    res.json({url:url})
    } catch (err) {
     //throw getError(err);
     console.log(err);
